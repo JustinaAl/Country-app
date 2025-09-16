@@ -18,8 +18,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        roboto: ['Roboto', 'sans-serif'],
-        robotoMono: ['Roboto Mono', 'monospace'],
+        main: ['Grandstander', 'sans-serif'],
+        text: ['Nunito Sans', 'monospace'],
       },
       fontWeight: {
         100: '100',
@@ -33,10 +33,11 @@ module.exports = {
         900: '900',
       },
       fontWidth: {
-        condensed: '75',  // 75% width
+        condensed: '75',
         medium: '85',
-        normal: '100',    // 100% width
-        expanded: '125',  // 125% width
+        normal: '95',
+        expanded: '105',
+        wide: '115'
       },
       boxShadow: {
         custom: "4px 4px 6.3px 0",
