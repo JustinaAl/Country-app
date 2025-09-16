@@ -8,7 +8,7 @@
   }
 
   button {
-    @apply border border-black w-full p-4 rounded-md font-main text-xl;
+    @apply border border-black w-full p-4 rounded-md font-main text-xl hover:scale-110;
   }
 
   select {

@@ -8,6 +8,7 @@ export const fetchCountries = createAsyncThunk(
     }
 )
 
+
 const regionSlice = createSlice({
     name: 'regionSlice',
     initialState:{
@@ -29,7 +30,6 @@ const regionSlice = createSlice({
         builder
         .addCase(fetchCountries.fulfilled, (state, action) => {
             state.status = 'Success!';
-            console.log(action.payload);
             state.countries = action.payload;
         })
         .addCase(fetchCountries.pending, (state) => {
