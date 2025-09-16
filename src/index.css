@@ -12,6 +12,6 @@
   }
 
   select {
-    @apply border border-black w-full p-2 rounded-md font-main text-2xl;
+    @apply border border-black w-full p-2 rounded-md font-main text-2xl cursor-pointer;
   }
 }
