@@ -20,10 +20,30 @@ const regionSlice = createSlice({
         error: null,
 
         currentPage: 0,
+        itemsPerPage: 12,
+
+        savedCountries: [],
     },
     reducers:{
         setRegion: (state, action) => {state.selectedRegion = action.payload},
-        setPage: (state, action) => {state.currentPage = action.payload}
+        setPage: (state, action) => {state.currentPage = action.payload},
+        setSavedCountries: (state, action) => {
+            if (localStorage.getItem('savedList')) {
+                state.savedCountries = JSON.parse(localStorage.getItem('savedList'));
+            } else {
+                state.savedCountries = [];
+            }
+        },
+        addCountry: (state, action) => {
+            state.savedCountries = [...state.savedCountries, action.payload]
+            localStorage.setItem('savedList', JSON.stringify(state.savedCountries));
+        },
+        removeCountry: (state, action) => {
+            state.savedCountries = state.savedCountries.filter(obj => obj.name.common !== action.payload.name.common);
+            localStorage.setItem('savedList', JSON.stringify(state.savedCountries));
+        }
+
+
     },
 
     extraReducers: (builder) =>{
@@ -43,5 +63,5 @@ const regionSlice = createSlice({
 });
 
 
-export const {setRegion,setPage} = regionSlice.actions
+export const {setRegion,setPage, setSavedCountries, addCountry, removeCountry} = regionSlice.actions
 export default regionSlice.reducer
