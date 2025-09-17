@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { fetchCountry } from "../redux/countrySlice";
 import { useEffect } from "react";
 
 
 const CountryPage = () =>{
+
+    const navigete = useNavigate();
 
     const {countryName} = useParams();
 
@@ -15,10 +17,9 @@ const CountryPage = () =>{
     useEffect(() => {
         if (countryName) {
             dispatch(fetchCountry(countryName));
-            console.log(countryName);
-            
         }
     }, [dispatch, countryName]);
+
 
     if (status === "Loading"|| countryInfo.length === 0) return <p>Loading...</p>;
     if (status === "Failed") return <p>Error: {error}</p>;
@@ -27,13 +28,31 @@ const CountryPage = () =>{
     const languages = Object.values(country.languages)
     const currencies = Object.values(country.currencies)
 
+    const uppdateLocalStorage = (country) =>{
+        const saved = localStorage.getItem('savedList');
+        if (saved) {
+            const savedList = JSON.parse(saved)
+            const exists = savedList.some(item => item.name.common === country.name.common);
+
+            if (!exists) {
+                savedList.push(country)
+                localStorage.setItem('savedList', JSON.stringify(savedList));
+            }
+    
+        }else{
+            localStorage.setItem('savedList', JSON.stringify([country]));
+        }
+    }
+
     
 
     return(
         <div className="space-y-4 md:p-6 md:space-y-10">
             <div className="flex justify-between">
-                <button className="py-2 px-4 w-fit"><i class="fa-solid fa-arrow-left"></i></button>
-                <button className="py-2 px-4 w-fit">Save</button>
+                <button onClick={()=>navigete('/countries')}
+                        className="py-2 px-4 w-fit"><i className="fa-solid fa-arrow-left"></i></button>
+                <button onClick={()=>uppdateLocalStorage(country)}
+                        className="py-2 px-4 w-fit">Save</button>
             </div>
             <h1 className="text-2xl md:text-4xl">{country.name.official}</h1>
             <img className="w-[70%] m-auto" src={country.flags.png} alt="" />
