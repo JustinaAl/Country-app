@@ -21,11 +21,11 @@ const CountriesPage = () => {
     return(
         <div className="md:p-4 lg:p-6 h-full flex flex-col justify-center">
             <BackButton/>
-            <h1 className="text-4xl md:text-5xl mb-4">Select Region</h1>
-            <SelectDropdown options={regions} value={selectedRegion} setValue={setRegion}/>
+            <label htmlFor="selectRegion" className="text-4xl md:text-5xl mb-4">Select Region</label>
+            <SelectDropdown options={regions} value={selectedRegion} setValue={setRegion} id={'selectRegion'}/>
             <div>
                 <CountriesToDisplay countries={countries}/>
-                <Paging total={countries}/>
+                <Paging total={countries} itemsPerPage={12}/>
             </div>
         </div>
     )

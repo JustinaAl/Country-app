@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from "react-redux"
 import { setPage } from "../redux/regionSlice";
 
-const Paging = ({total}) => {
+const Paging = ({total, itemsPerPage}) => {
 
     const dispatch = useDispatch();
-    const {itemsPerPage} = useSelector(store => store.regions);
 
     const numberOfPages = Math.ceil(total.length / itemsPerPage)
     const buttonsForPages = []
@@ -19,7 +18,7 @@ const Paging = ({total}) => {
         </button>)
     }
     return(
-        <div className="flex justify-center gap-4 ">
+        <div className="flex flex-wrap justify-center gap-4 ">
             {buttonsForPages}
         </div>
     )

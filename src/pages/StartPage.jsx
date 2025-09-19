@@ -13,7 +13,7 @@ const StartPage = () => {
                     <button onClick={()=> navigate('/collection')}>Collection</button>
                 </div>
                 <div className="flex flex-col items-center w-full space-y-4">
-                    <button >Country Quiz</button>
+                    <button onClick={() => navigate('/quiz')}>Country Quiz</button>
                     <button >Leaderboard</button>
                 </div>
             </div>

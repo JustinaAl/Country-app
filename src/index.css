@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  h1 {
+  h1, label{
     @apply font-main font-800 italic text-center;
   }
 
@@ -11,7 +11,7 @@
     @apply border border-black w-full p-4 rounded-md font-main text-xl hover:scale-110;
   }
 
-  select {
+  select, input[type="text"]{
     @apply border border-black w-full p-2 rounded-md font-main text-2xl cursor-pointer;
   }
 
