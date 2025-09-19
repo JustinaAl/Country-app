@@ -31,11 +31,13 @@ const quizSlice = createSlice({
             const {i,value} = action.payload;
             state.answers[i] = value;
         },
+        emptyAnswerArray: (state, action) => {state.answers = Array(15).fill('')},
+        
 
     },
 
 });
 
 
-export const {setUsername, setStartQuiz, cleanUserName, pushUsername, setRandom15, setAnswers, setAnswer} = quizSlice.actions
+export const {setUsername, setStartQuiz, cleanUserName, pushUsername, setRandom15, setAnswers, setAnswer,emptyAnswerArray} = quizSlice.actions
 export default quizSlice.reducer

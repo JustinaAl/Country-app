@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCountries } from "../redux/regionSlice";
+import { fetchCountries, resetPage } from "../redux/regionSlice";
 import { useEffect } from "react";
 import { setAnswer, setRandom15 } from "../redux/quizSlice";
 import Paging from "./Paging";
@@ -15,6 +15,7 @@ const Quiz = () => {
 
     useEffect(() => {
         dispatch(fetchCountries(selectedRegion));
+        dispatch(resetPage())
     }, []);
 
     useEffect(() => {

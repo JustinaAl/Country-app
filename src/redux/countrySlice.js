@@ -17,8 +17,6 @@ const countrySlice = createSlice({
         countryInfo: [],
         status: 'idle',
         error: null,
-
-        currentPage: 0,
     },
     reducers:{
         

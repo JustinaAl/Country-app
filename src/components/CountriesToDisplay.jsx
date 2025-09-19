@@ -16,8 +16,7 @@ const CountriesToDisplay = ({countries}) => {
 
     const countiesToDisplay = countries
         .slice(itemsPerPage * currentPage, itemsPerPage * (currentPage + 1))
-        .map((country, index) => <Link to={`/country/${country.name.official}`}><div 
-        key={'c'+index}
+        .map((country, index) => <Link key={'c'+index} to={`/country/${country.name.official}`}><div 
         className="border border-black aspect-[2/1.3] hover:scale-110 cursor-pointer"
         ><img
         className="h-[100%] w-full object-cover"

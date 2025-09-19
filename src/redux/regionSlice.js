@@ -41,7 +41,8 @@ const regionSlice = createSlice({
         removeCountry: (state, action) => {
             state.savedCountries = state.savedCountries.filter(obj => obj.name.common !== action.payload.name.common);
             localStorage.setItem('savedList', JSON.stringify(state.savedCountries));
-        }
+        },
+        resetPage: (state, action) => {state.currentPage = 0},
 
 
     },
@@ -63,5 +64,5 @@ const regionSlice = createSlice({
 });
 
 
-export const {setRegion,setPage, setSavedCountries, addCountry, removeCountry} = regionSlice.actions
+export const {setRegion,setPage, setSavedCountries, addCountry, removeCountry, resetPage} = regionSlice.actions
 export default regionSlice.reducer

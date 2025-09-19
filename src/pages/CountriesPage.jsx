@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import SelectDropdown from "../components/SelectDropdown";
-import { fetchCountries, setRegion } from "../redux/regionSlice";
+import { fetchCountries, resetPage, setRegion } from "../redux/regionSlice";
 import { useEffect } from "react";
 import BackButton from "../components/BackButton";
 import CountriesToDisplay from "../components/CountriesToDisplay";
@@ -15,6 +15,7 @@ const CountriesPage = () => {
 
     useEffect(() => {
       dispatch(fetchCountries(selectedRegion));
+      dispatch(resetPage())
     }, [selectedRegion]);
         
 
