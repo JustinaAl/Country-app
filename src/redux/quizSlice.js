@@ -14,7 +14,6 @@ const quizSlice = createSlice({
 
     },
     reducers:{
-        pushUsername: (state, action) => {state.allUserNames = [...state.allUserNames, state.userName]},
         setUsername: (state, action) => {state.userName = action.payload },
         cleanUserName: (state, action) => {state.userName = '' },
         setStartQuiz : (state, action) => {state.quizStarted = action.payload},
@@ -39,5 +38,5 @@ const quizSlice = createSlice({
 });
 
 
-export const {setUsername, setStartQuiz, cleanUserName, pushUsername, setRandom15, setAnswers, setAnswer,emptyAnswerArray} = quizSlice.actions
+export const {setUsername, setStartQuiz, cleanUserName, setRandom15, setAnswers, setAnswer,emptyAnswerArray} = quizSlice.actions
 export default quizSlice.reducer

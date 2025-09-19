@@ -14,7 +14,7 @@ const StartPage = () => {
                 </div>
                 <div className="flex flex-col items-center w-full space-y-4">
                     <button onClick={() => navigate('/quiz')}>Country Quiz</button>
-                    <button >Leaderboard</button>
+                    <button onClick={() => navigate('/leaderboard')}>Leaderboard</button>
                 </div>
             </div>
         </div>

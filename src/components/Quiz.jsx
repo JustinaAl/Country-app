@@ -3,14 +3,16 @@ import { fetchCountries, resetPage } from "../redux/regionSlice";
 import { useEffect } from "react";
 import { setAnswer, setRandom15 } from "../redux/quizSlice";
 import Paging from "./Paging";
+import { useNavigate } from "react-router-dom";
 
 
 const Quiz = () => {
 
+    const navigate= useNavigate();
 
     const dispatch = useDispatch();
     const {countries, status, error, selectedRegion, currentPage} = useSelector(store => store.regions)
-    const {random15, answers} = useSelector(store => store.quiz)
+    const {random15, answers, userName} = useSelector(store => store.quiz)
 
 
     useEffect(() => {
@@ -34,6 +36,32 @@ const Quiz = () => {
     if (status === "Loading"|| countries.length === 0) return <p>Loading...</p>;
     if (status === "Failed") return <p>Error: {error}</p>;
 
+    const saveResults = (score) => {
+        const user = {
+            name: userName,
+            region: selectedRegion,
+            points: score
+        }
+        const scoreArray = JSON.parse(localStorage.getItem('quizResults')) || [];
+        scoreArray.push(user)
+
+        localStorage.setItem('quizResults', JSON.stringify(scoreArray))
+    }
+
+    const countPoints = () => {
+        const rightAnswers = random15.map(country => country.name.common);
+        const userAnswers = [...answers];
+
+        let score=0
+
+        for(let i=0; i< rightAnswers.length; i++){
+            if (userAnswers[i] && rightAnswers[i].toLowerCase() === userAnswers[i].toLowerCase()) {
+                score++
+            }
+        }
+        saveResults(score);
+    }
+
 
     return (
         <>
@@ -54,10 +82,18 @@ const Quiz = () => {
             <Paging total={random15} itemsPerPage={1}/>
             <div className="flex flex-col w-fit gap-2">
                 <button className="w-fill  border-green-600 hover:bg-green-400 border-2 text-sm p-2"
-                        onClick={()=> {}}
+                        onClick={()=> {
+                            if(confirm('Are you sure?')){
+                                countPoints();
+                            }
+                        }}
                 >Save Quiz</button>
                 <button className="w-fill border-red-600 hover:bg-red-400 border-2 text-sm p-2"
-                    
+                        onClick={()=> {
+                            if(confirm('Are you sure you want to quit?')){
+                                navigate('/')
+                            }
+                        }}
                 >Quit without saving</button>
             </div>
          </div>

@@ -5,9 +5,7 @@ import CountriesPage from './pages/CountriesPage'
 import CollectionPage from './pages/CollectionPage'
 import CountryPage from './pages/CountryPage'
 import QuizPage from './pages/QuizPage'
-
-
-
+import LeaderboardPage from './pages/LeaderboardPage'
 
 
 function App() {
@@ -20,6 +18,7 @@ function App() {
           <Route path='/country/:countryName'  element={<CountryPage />}/>
           <Route path='/collection'  element={<CollectionPage />}/>
           <Route path='/quiz'  element={<QuizPage />}/>
+          <Route path='/leaderboard'  element={<LeaderboardPage />}/>
         </Routes>
       </BrowserRouter>
   )

@@ -23,7 +23,7 @@ const CollectionPage = () => {
                 {!savedCountries ? <p className="text-xl text-center pt-24">You dont have any countries saved!</p> :
                 <>
                     <CountriesToDisplay countries={savedCountries} />
-                    <Paging total={savedCountries}/>
+                    <Paging total={savedCountries} itemsPerPage={12}/>
                 </> 
                 }
             </div>

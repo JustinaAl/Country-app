@@ -12,6 +12,12 @@ const QuizSetup = () => {
     const {userName} = useSelector(store => store.quiz);
     const dispatch = useDispatch();
 
+    const userNameExists = () => {
+        const scoreArray = JSON.parse(localStorage.getItem('quizResults')) || [];
+        const exists = scoreArray.some(user => user.name === userName);
+        return exists;
+    }
+
     return <>
         <BackButton />
         <div className="space-y-12 h-full flex flex-col">
@@ -33,7 +39,13 @@ const QuizSetup = () => {
             <button 
                 className="w-fit self-center bg-green-400 disabled:scale-100 disabled:bg-transparent" 
                 disabled={userName.length<5}
-                onClick={() => { dispatch(setStartQuiz(true))}}
+                onClick={() => { 
+                    if(!userNameExists()){
+                        dispatch(setStartQuiz(true))
+                    }else{
+                        alert('User with this username already exists')
+                    }
+                    }}
             >Start Quiz</button>
         </div>
     </>
