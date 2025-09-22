@@ -5,7 +5,7 @@ const CountryInfo = ({country}) => {
 
     return(
         <>
-            <h1 className="text-2xl md:text-4xl">{country.name.official}</h1>
+            <h1 className="text-2xl md:text-4xl">{country.name.common}</h1>
             <img className="w-[70%] m-auto" src={country.flags.png} alt="" />
             <div className="text-md md:text-xl space-y-2 md:space-y-4">
                 <div className="flex gap-4">

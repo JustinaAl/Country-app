@@ -30,7 +30,8 @@ const QuizSetup = () => {
                 <div className="flex flex-col">
                     <label htmlFor="userName" className="text-xl text-left">Enter Username</label>
                     <input type="text" 
-                        placeholder="Enter a username with at least 5 characters" 
+                        maxLength="10"
+                        placeholder="Enter a username" 
                         onChange={(e)=>dispatch(setUsername(e.target.value))}
                         className="placeholder:text-sm"
                     />
@@ -38,7 +39,7 @@ const QuizSetup = () => {
             </div>
             <button 
                 className="w-fit self-center bg-green-400 disabled:scale-100 disabled:bg-transparent" 
-                disabled={userName.length<5}
+                disabled={userName.length<3}
                 onClick={() => { 
                     if(!userNameExists()){
                         dispatch(setStartQuiz(true))

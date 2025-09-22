@@ -16,6 +16,6 @@
   }
 
   p, span{
-    @apply font-text
+    @apply font-text;
   }
 }
