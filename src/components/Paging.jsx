@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { setPage } from "../redux/regionSlice";
 import { useEffect } from "react";
-import { emptyAnswerArray } from "../redux/quizSlice";
+import { emptyAnswerArray, setShowResult } from "../redux/quizSlice";
 
 const Paging = ({total, itemsPerPage}) => {
 
@@ -11,10 +11,10 @@ const Paging = ({total, itemsPerPage}) => {
 
 
     const rightAnswers = random15.map(country => country.name.common);
-    const userAnswers = [...answers];
 
     useEffect(()=>{
         dispatch(emptyAnswerArray())
+        dispatch(setShowResult(false))
     },[])
 
     const numberOfPages = Math.ceil(total.length / itemsPerPage)

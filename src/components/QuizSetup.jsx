@@ -3,6 +3,7 @@ import SelectDropdown from "./SelectDropdown"
 import { setRegion } from "../redux/regionSlice";
 import { setUsername, setStartQuiz } from "../redux/quizSlice";
 import BackButton from "./BackButton";
+import { useEffect } from "react";
 
 
 
@@ -17,6 +18,10 @@ const QuizSetup = () => {
         const exists = scoreArray.some(user => user.name === userName);
         return exists;
     }
+
+    useEffect(() => {
+        dispatch(setUsername(''));
+    },[]);
 
     return <>
         <BackButton />
