@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { setShowPopUp } from "../redux/quizSlice"
+import { setResult, setShowPopUp, setShowResult } from "../redux/quizSlice"
 import { useNavigate } from "react-router-dom";
 
 const PopUp = () => {
@@ -34,7 +34,7 @@ const PopUp = () => {
             }
         }
         saveResults(score);
-        return score;
+        dispatch(setResult(score))
     }
 
     return(
@@ -44,7 +44,11 @@ const PopUp = () => {
                         onClick={() => dispatch(setShowPopUp(false))}
                 >X</button>
                 <div className="w-full h-full flex flex-col justify-center items-center gap-6 md:gap-10">
-                    <p className="font-text text-xl md:text-2xl text-center">Are you sure you want to end game?</p>
+
+                    <p className="font-text text-xl md:text-2xl text-center">Are you sure you want to end game 
+                        {quitShow === 'quit' ? 'without saving' : 'and save result'}
+                    </p>
+
                     <div className="flex space-x-6">
                         <button className="w-[100px] border-green-600 border-2 hover:bg-green-300"
                                 onClick={() => {
@@ -52,15 +56,17 @@ const PopUp = () => {
                                         dispatch(setShowPopUp(false))
                                         navigate('/')
                                     }else if (quitShow === 'show'){
-                                        alert(countPoints())
+                                        dispatch(setShowPopUp(false))
+                                        dispatch(setShowResult(true))
+                                        countPoints()
                                     }
-                                }
-                                }
+                                }}
                         >YES</button>
                         <button className="w-fit w-[100px] border-red-600 border-2 hover:bg-red-300"
                                 onClick={() => dispatch(setShowPopUp(false))}
                         >NO</button>
                     </div>
+
                 </div>
             </div>
         </div>

@@ -29,7 +29,7 @@ const QuizSetup = () => {
                 </div>
                 <div className="flex flex-col">
                     <label htmlFor="userName" className="text-xl text-left">Enter Username</label>
-                    <input type="text" 
+                    <input type="text" id="userName"
                         maxLength="10"
                         placeholder="Enter a username" 
                         onChange={(e)=>dispatch(setUsername(e.target.value))}

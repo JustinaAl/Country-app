@@ -13,6 +13,8 @@ const quizSlice = createSlice({
         answers: Array(15).fill(''),
         showPopUp: false,
         quitShow: 'quit',
+        showResult: false,
+        result: null,
 
     },
     reducers:{
@@ -35,12 +37,13 @@ const quizSlice = createSlice({
         emptyAnswerArray: (state, action) => {state.answers = Array(15).fill('')},
         setShowPopUp: (state, action) => {state.showPopUp = action.payload},
         setQuitShow: (state, action) => {state.quitShow = action.payload},
-        
+        setShowResult: (state, action) => {state.showResult = action.payload},
+        setResult:(state, action) => {state.result = action.payload}
 
     },
 
 });
 
 
-export const {setUsername, setStartQuiz, cleanUserName, setRandom15, setAnswers, setAnswer,emptyAnswerArray,setShowPopUp,setQuitShow} = quizSlice.actions
+export const {setUsername, setStartQuiz, cleanUserName, setRandom15, setAnswers, setAnswer,emptyAnswerArray,setShowPopUp,setQuitShow, setShowResult, setResult} = quizSlice.actions
 export default quizSlice.reducer

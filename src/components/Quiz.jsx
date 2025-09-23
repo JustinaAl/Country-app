@@ -4,12 +4,16 @@ import { useEffect} from "react";
 import { setAnswer, setQuitShow, setRandom15, setShowPopUp } from "../redux/quizSlice";
 import Paging from "./Paging";
 import PopUp from "./PopUp";
+import { useNavigate } from "react-router-dom";
+
 
 const Quiz = () => {
 
     const dispatch = useDispatch();
+    const navigate= useNavigate();
+
     const {countries, status, error, selectedRegion, currentPage} = useSelector(store => store.regions)
-    const {random15, answers, userName, showPopUp} = useSelector(store => store.quiz)
+    const {random15, answers, showPopUp, showResult, result} = useSelector(store => store.quiz)
 
 
     useEffect(() => {
@@ -44,20 +48,29 @@ const Quiz = () => {
             />
             <Paging total={random15} itemsPerPage={1}/>
             <div className="flex flex-col w-fit gap-2">
-                <button className="w-fill  border-green-600 hover:bg-green-400 border-2 text-sm p-2"
-                        onClick={() => {
-                            dispatch(setShowPopUp(true))
-                            dispatch(setQuitShow('show'))
-                        }
-                        }
-                >Save Quiz</button>
-                <button className="w-fill border-red-600 hover:bg-red-400 border-2 text-sm p-2"
-                        onClick={() => {
-                            dispatch(setShowPopUp(true))
-                            dispatch(setQuitShow('quit'))
-                        }
-                        }
-                >Quit without saving</button>
+                {showResult ?
+                    <>
+                        <p className="font-main text-xl md:text-2xl md:py-2">You got {result} points!</p>
+                        <button onClick={()=> navigate('/')}>Quit</button>
+                    </>
+                :
+                    <>
+                        <button className="w-fill  border-green-600 hover:bg-green-400 border-2 text-sm p-2"
+                                onClick={() => {
+                                    dispatch(setShowPopUp(true))
+                                    dispatch(setQuitShow('show'))
+                                }
+                                }
+                        >Save Quiz</button>
+                        <button className="w-fill border-red-600 hover:bg-red-400 border-2 text-sm p-2"
+                                onClick={() => {
+                                    dispatch(setShowPopUp(true))
+                                    dispatch(setQuitShow('quit'))
+                                }
+                                }
+                        >Quit without saving</button>
+                    </>
+                }
             </div>
             {showPopUp && <PopUp />}
          </div>

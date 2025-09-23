@@ -7,7 +7,11 @@ const Paging = ({total, itemsPerPage}) => {
 
     const dispatch = useDispatch();
     const {currentPage} = useSelector(store => store.regions)
-    const {answers} = useSelector(store => store.quiz)
+    const {answers, random15, showResult} = useSelector(store => store.quiz)
+
+
+    const rightAnswers = random15.map(country => country.name.common);
+    const userAnswers = [...answers];
 
     useEffect(()=>{
         dispatch(emptyAnswerArray())
@@ -19,8 +23,17 @@ const Paging = ({total, itemsPerPage}) => {
     for(let i = 0; i<numberOfPages; i++){
         buttonsForPages.push(
         <button
-            className={`p-2 w-12 ${currentPage === i && 'bg-blue-200'}
-                        ${answers[i] !== '' && 'bg-green-200'}
+            className={`p-2 w-12
+                ${!showResult
+                ? currentPage === i 
+                    ? 'bg-blue-400'
+                    : answers[i] !== ''
+                        ? 'bg-blue-200'
+                        : ''
+                : answers[i] === rightAnswers[i]
+                    ? 'bg-green-300'
+                    : 'bg-red-300'
+                }
             `}
             key={`pg${i}`}
             onClick={()=> dispatch(setPage(i))}
