@@ -23,7 +23,12 @@ const Quiz = () => {
 
     useEffect(() => {
         dispatch(setRandom15(countries))
+        
     }, [countries]);
+
+    useEffect(() => {
+        console.log(random15);
+    }, [random15]);
 
 
     if (status === "Loading"|| countries.length === 0) return <p>Loading...</p>;
@@ -34,12 +39,15 @@ const Quiz = () => {
         <>
          {random15.length !== 15 ? <p>Loading.</p> : 
          
-         <div className="h-[100%] space-y-6 flex flex-col items-center justify-center md:space-y-12">
+         <div className="h-[100%] space-y-4 flex flex-col items-center justify-center md:space-y-6">
             <div className="aspect-[2/1.3] w-[50%] mx-auto flex items-center">
                 <img src={random15[currentPage].flags.png} 
                 alt={random15[currentPage].flags.alt}
                 className = "w-full"/>
             </div>
+
+            {showResult && <p className="font-main md:text-xl">{random15[currentPage].name.common}</p>}
+            
             <input type="text" 
                 placeholder="Enter name of a country"
                 className="placeholder:text-sm h-fit"

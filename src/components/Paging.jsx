@@ -23,7 +23,7 @@ const Paging = ({total, itemsPerPage}) => {
     for(let i = 0; i<numberOfPages; i++){
         buttonsForPages.push(
         <button
-            className={`p-2 w-12
+            className={`p-1 md:p-2 w-12
                 ${!showResult
                 ? currentPage === i 
                     ? 'bg-blue-400'
