@@ -6,7 +6,12 @@ import { addCountry, removeCountry, setSavedCountries } from "../redux/regionSli
 
 const CountryPageToolbar = ({country}) => {
 
-    const exists = (JSON.parse(localStorage.getItem('savedList'))).some(item => item.name.common === country.name.common);
+    const savedArray = JSON.parse(localStorage.getItem('savedList'))
+    let exists;
+    if (savedArray) {
+        exists = savedArray.some(item => item.name.common === country.name.common)
+    }
+
     const dispatch = useDispatch();
 
     const {savedCountries} = useSelector(store => store.regions);
