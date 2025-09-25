@@ -13,16 +13,15 @@ const CountryPage = () =>{
     const dispatch = useDispatch();
     const {countryInfo, status, error} = useSelector(store => store.country)
 
-
     useEffect(() => {
         if (countryName) {
             dispatch(fetchCountry(countryName));
         }
-    }, [dispatch, countryName]);
+    }, [countryName]);
 
 
-    if (status === "Loading"|| countryInfo.length === 0) return <p>Loading...</p>;
-    if (status === "Failed") return <p>Error: {error}</p>;
+    if (status === "Loading") return <p>Loading...</p>;
+    if (status === "Failed!" || countryInfo.length === 0) return <p>Error: {error}</p>;
 
     const country = countryInfo[0];
     

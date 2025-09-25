@@ -23,16 +23,11 @@ const Quiz = () => {
 
     useEffect(() => {
         dispatch(setRandom15(countries))
-        
     }, [countries]);
 
-    useEffect(() => {
-        console.log(random15);
-    }, [random15]);
 
-
-    if (status === "Loading"|| countries.length === 0) return <p>Loading...</p>;
-    if (status === "Failed") return <p>Error: {error}</p>;
+    if (status === "Loading") return <p>Loading...</p>;
+    if (status === "Failed" || countries.length === 0) return <p>Error: {error}</p>;
 
 
     return (

@@ -17,6 +17,9 @@ const CountriesPage = () => {
       dispatch(fetchCountries(selectedRegion));
       dispatch(resetPage())
     }, [selectedRegion]);
+
+    if (status === "Loading") return <p>Loading...</p>;
+    if (status === "Failed!" || countries.length === 0) return <p>Error: {error}</p>;
         
 
     return(
